@@ -2,7 +2,7 @@
 Alternative Recommender Case Study
 *******************************************************
 
-:Authors: Adam Richards
+:Authors: DSI TEAM
 :Web site: https://github.com/zipfian/alt-recommender-case-study
 :Copyright: Galvanize
 
