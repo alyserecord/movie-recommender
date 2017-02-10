@@ -27,8 +27,8 @@ concentrated on the same technology when it comes to a solution.
   It can be helpful to provide the links below the day before the case study
   so that students have time to familiarize themselves with the underlying concepts.
 
-Spark and a the big data solution
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Spark and the big data solution
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Spark solution makes use of the Machine Learning library ML.  The
 following two links will help you build a solution.  It is assumed
@@ -40,7 +40,7 @@ already completed the Spark lectures and assignments.
 
 The first link is the official documentation.  The second is a
 solution posted in a blog and although it uses MLlib instead of ML it
-is still a useful resource.  ML should be used is the more stable library.
+is still a useful resource.  ML is the more stable library and continues to be developed.
     
 PyMC3 and the probabilistic solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -60,7 +60,7 @@ contained therein are useful for providing context.
 The Case Study
 --------------------------------------
 
-You a the team of talented data scientists working for the company,
+You and a team of talented data scientists are working for the company,
 **Items-Legit**, who uses several production recommenders that provide
 a significant revenue stream.  The issue is that they have been
 around a long time and your head of data science has asked you to
@@ -108,12 +108,13 @@ And the PyMC3 example makes use of the jokes dataset.
 
    * https://pymc-devs.github.io/pymc3/notebooks/pmf-pymc.html
 
-So natuarlly we are asking you do to do both.
+So naturally we are asking you to build two recommenders, one for each dataset.
 
 There are larger versions of these data sets available from the links
 below, but we do not expect a production ready recommender in only a
 days time so do not worry too much about scale for now.  If you are
-interested we provide the links as a reference.
+interested we provide the links as a reference.  Note that the data is
+already downloaded and in this repo.
 
   * https://grouplens.org/datasets/movielens
   * http://eigentaste.berkeley.edu/dataset/  
