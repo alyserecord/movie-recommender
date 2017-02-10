@@ -11,7 +11,7 @@ About
 
 The original case study
 https://github.com/zipfian/recommender-case-study relied heavily on
-GraphLab.  This repository is an alternative that provides
+GraphLab.  This repository is an alternative that guides
 students towards one of two alternative technologies.
 
 Team organization
@@ -21,7 +21,7 @@ Students can choose one of two possible routes to a solution.  The day
 before the case study students are asked if they would like to pursue
 a solution that will **improve their big data skills** or alternatively a
 solution that will **improve their machine learning skills**.  Both sound
-tempting, but team dynamics are generally improved if all members are
+tempting, but team dynamics are likely improved if all members are
 concentrated on the same technology when it comes to a solution.
 
   It can be helpful to provide the links below the day before the case study
@@ -30,7 +30,7 @@ concentrated on the same technology when it comes to a solution.
 Spark and a the big data solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Spark solution makes use of Machine Learning library ML.  The
+The Spark solution makes use of the Machine Learning library ML.  The
 following two links will help you build a solution.  It is assumed
 that the students who decide to build a recommender in Spark have
 already completed the Spark lectures and assignments.
@@ -40,7 +40,7 @@ already completed the Spark lectures and assignments.
 
 The first link is the official documentation.  The second is a
 solution posted in a blog and although it uses MLlib instead of ML it
-is a useful resource.
+is still a useful resource.  ML should be used is the more stable library.
     
 PyMC3 and the probabilistic solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,22 +55,21 @@ at least some exposure to PyMC3 in one or more lectures.
 
 The first link is where students will spend most of their time.  The
 second link is a talk that introduces PyMC3 and some of the resources
-contained therein are useful for providing context.  There is a
-notebook version of the first link in that repository that may be
-useful.
+contained therein are useful for providing context.
 
 The Case Study
 --------------------------------------
 
-You are the team of talented data scientists working for a company
-that has several production recommenders that provide a significant
-revenue stream.  The issues is they they have been around a long time
-and your head of data science as asked you to explore new solutions.
+You a the team of talented data scientists working for the company,
+**Items-Legit**, who uses several production recommenders that provide
+a significant revenue stream.  The issue is that they have been
+around a long time and your head of data science has asked you to
+explore new solutions.
 
 The solution that has been around for so long is called the **Mean of
-Means**.  We imagine some users like to rate things highly---others
+Means**.  We see that some users like to rate things highly---others
 simply do not.  Some items are just better or worse.  We can capture
-these general trends through per-user and per-joke rating means. We'll
+these general trends through per-user and per-joke rating means. We
 also incorporate the global mean to smooth things out a bit. So if we
 see a missing value in cell R_{ij}, we'll average the global
 mean with the mean of U_i and the mean of V_j and use
@@ -119,5 +118,5 @@ interested we provide the links as a reference.
   * https://grouplens.org/datasets/movielens
   * http://eigentaste.berkeley.edu/dataset/  
 
-You may improve upon, scale up and deploy your system in the manner
-that your team feels is best.
+You may improve upon, scale (up or down) and deploy your system in the manner
+that your team feels is best.  Good luck!
