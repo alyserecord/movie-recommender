@@ -72,16 +72,9 @@ Means**.  We imagine some users like to rate things highly---others
 simply do not.  Some items are just better or worse.  We can capture
 these general trends through per-user and per-joke rating means. We'll
 also incorporate the global mean to smooth things out a bit. So if we
-see a missing value in cell $R_{ij}$, we'll average the global
-mean with the mean of $U_i$ and the mean of $V_j$ and use
+see a missing value in cell R_{ij}, we'll average the global
+mean with the mean of U_i and the mean of V_j and use
 that value to fill it in.
-
-$$
-   \text{user_means} = \frac{1}{M} \sum_{j=1}^M I_{ij}(R_{ij})
-   \text{joke_means} = \frac{1}{N} \sum_{i=1}^N I_{ij}(R_{ij})
-
-   R_{ij}^* = \frac{1}{3} \left(\text{user_means}_i + \text{ joke_means}_j + \text{ global_mean} \right)
-$$
 
 We would like you to use this as a baseline when making your
 comparisons.  An implementation of this baseline and several others
