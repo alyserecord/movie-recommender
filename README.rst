@@ -42,7 +42,7 @@ The first link is the official documentation.  The second is a
 solution posted in a blog and although it uses MLlib instead of ML it
 is a useful resource.
     
-PyMC and the probabilistic solution
+PyMC3 and the probabilistic solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The probabilistic solution makes use of PyMC3.  The following links
@@ -113,8 +113,8 @@ So natuarlly we are asking you do to do both.
 
 There are larger versions of these data sets available from the links
 below, but we do not expect a production ready recommender in only a
-days time so do not too much about scale for now.  If you are interested
-we provide the links as a reference.
+days time so do not worry too much about scale for now.  If you are
+interested we provide the links as a reference.
 
   * https://grouplens.org/datasets/movielens
   * http://eigentaste.berkeley.edu/dataset/  
