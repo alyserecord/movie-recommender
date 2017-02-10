@@ -11,8 +11,8 @@ About
 
 The original case study
 https://github.com/zipfian/recommender-case-study relied heavily on
-GraphLab.  This repository is an alternative that provides guides
-students towards one of two possible solutions.
+GraphLab.  This repository is an alternative that provides
+students towards one of two alternative technologies.
 
 Team organization
 ---------------------
@@ -72,16 +72,16 @@ Means**.  We imagine some users like to rate things highly---others
 simply do not.  Some items are just better or worse.  We can capture
 these general trends through per-user and per-joke rating means. We'll
 also incorporate the global mean to smooth things out a bit. So if we
-see a missing value in cell :math`R_{ij}`, we'll average the global
-mean with the mean of :math`U_i` and the mean of :math`V_j` and use
+see a missing value in cell $R_{ij}$, we'll average the global
+mean with the mean of $U_i$ and the mean of $V_j$ and use
 that value to fill it in.
 
-.. math::
-
+$$
    \text{user_means} = \frac{1}{M} \sum_{j=1}^M I_{ij}(R_{ij})
    \text{joke_means} = \frac{1}{N} \sum_{i=1}^N I_{ij}(R_{ij})
 
    R_{ij}^* = \frac{1}{3} \left(\text{user_means}_i + \text{ joke_means}_j + \text{ global_mean} \right)
+$$
 
 We would like you to use this as a baseline when making your
 comparisons.  An implementation of this baseline and several others
@@ -120,10 +120,11 @@ So natuarlly we are asking you do to do both.
 
 There are larger versions of these data sets available from the links
 below, but we do not expect a production ready recommender in only a
-days time so do not worry about scale.  If you are interested
+days time so do not too much about scale for now.  If you are interested
 we provide the links as a reference.
 
   * https://grouplens.org/datasets/movielens
   * http://eigentaste.berkeley.edu/dataset/  
 
-Good luck!
+You may improve upon, scale up and deploy your system in the manner
+that your team feels is best.
