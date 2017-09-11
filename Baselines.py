@@ -1,7 +1,9 @@
 """
+main idea borrowed from...
 https://pymc-devs.github.io/pymc3/notebooks/pmf-pymc.html
 """
 
+import sys
 from collections import OrderedDict
 import numpy as np
 
@@ -95,17 +97,25 @@ class MeanOfMeansBaseline(Baseline):
 
 
 if __name__ == "__main__":
+
     baseline_methods = OrderedDict()
     baseline_methods['ur'] = UniformRandomBaseline
     baseline_methods['gm'] = GlobalMeanBaseline
     baseline_methods['mom'] = MeanOfMeansBaseline
 
+    ## generate a utility matrix
     R = np.random.randint(-10,10,1000).astype('float')
-    test = R
-    
-    train = R.copy()
-    train[np.random.randint(0,1000,50)] = np.nan
+    R[np.random.randint(0,1000,50)] = np.nan
 
+    ## handle unrated items
+    unrated = np.isnan(R)
+    R[unrated] = 0
+
+    ## create a train-test split
+    test = R
+    train = R.copy()
+    train[np.random.randint(0,1000,int(np.round(0.2*R.size)))] = np.nan
+    
     train = train.reshape(100,10)
     test = test.reshape(100,10)
     
@@ -115,5 +125,3 @@ if __name__ == "__main__":
         method = Method(train)
         baselines[name] = method.rmse(test)
         print('%s RMSE:\t%.5f' % (method, baselines[name]))
-    
-    
