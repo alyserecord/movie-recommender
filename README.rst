@@ -1,6 +1,7 @@
-*******************************************************
+
 Alternative Recommender Case Study
-*******************************************************
+=====================================
+
 
 :Authors: DSI TEAM
 :Web site: https://github.com/zipfian/alt-recommender-case-study
@@ -20,8 +21,8 @@ Team organization
 There are three aims of the following case study:
 
   1. **Improve your big data skills** by including as part of your solution a working recommender written in Spark.
-  2. **Demonstrate your knowledge of recommendation systems** Use the library **Surprise** to learn a bit more about what you can do with recommenders
-  3. **Practice you communication**
+  2. **Demonstrate your knowledge of recommendation systems** by using the library **Surprise** to learn a bit more about what you can do with recommenders
+  3. **Practice you communication** by presenting to a non-technical audience
 
 Spark and the big data solution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
