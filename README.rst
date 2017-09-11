@@ -86,13 +86,14 @@ The data
 --------------
 
 At **Items-Legit** we recommend movies, songs, books, and so much
-more.  Since all of the bosses know about, MovieLens, the classical
-recommender dataset we are asking you to work with that data.
+more.  Since the bosses already know about, MovieLens, the classical
+recommender dataset, we are asking you to work with that data.
 
-There are larger versions of these data sets available from the links
+There is a larger version of the dataset available from the link
 below, but we do not expect a production ready recommender in only a
-days time so do not worry too much about scale for now.  There is already data is
-already downloaded and in this repo.
+days time so do not worry too much about scale for now.  You will find
+the smaller version of the data as part of this repo.
+
 
   * https://grouplens.org/datasets/movielens
 
@@ -104,8 +105,8 @@ Helpful hints
   * NaNs might requrire some thought
   * Train test splits might also require a bit of thought
   * Finally, the 'bosses' are not real keen thinking too hard about
-    RMSE or MAE.  You might be able to explain it to the, but if you
+    RMSE or MAE.  You might be able to explain it to them, but if you
     report it as percent improvement over mean-of means they are more
-    likely to listen
+    likely to listen.
     
 Good luck!
