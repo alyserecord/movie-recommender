@@ -1,127 +1,94 @@
+#!/usr/bin/env python
+
 """
-main idea borrowed from...
-https://pymc-devs.github.io/pymc3/notebooks/pmf-pymc.html
+http://surprise.readthedocs.io/en/stable/building_custom_algo.html
 """
 
 import sys
-from collections import OrderedDict
 import numpy as np
+from surprise import AlgoBase, Dataset, evaluate
 
-# Define our evaluation function.
-def rmse(test_data, predicted):
-    """Calculate root mean squared error.
-    Ignoring missing values in the test data.
+def create_matrix(dataset):
     """
-    I = ~np.isnan(test_data)   # indicator for missing values
-    N = I.sum()                # number of non-missing values
-    sqerror = abs(test_data - predicted) ** 2  # squared error array
-    mse = sqerror[I].sum() / N                 # mean squared error
-    return np.sqrt(mse)                        # RMSE
-
-
-# Create a base class with scaffolding for our 3 baselines.
-def split_title(title):
-    """Change "BaselineMethod" to "Baseline Method"."""
-    words = []
-    tmp = [title[0]]
-    for c in title[1:]:
-        if c.isupper():
-            words.append(''.join(tmp))
-            tmp = [c]
-        else:
-            tmp.append(c)
-    words.append(''.join(tmp))
-    return ' '.join(words)
-
-
-class Baseline(object):
-    """Calculate baseline predictions."""
-
-    def __init__(self, train_data):
-        """Simple heuristic-based transductive learning to fill in missing
-        values in data matrix."""
-        self.predict(train_data.copy())
-
-    def predict(self, train_data):
-        raise NotImplementedError(
-            'baseline prediction not implemented for base class')
-
-    def rmse(self, test_data):
-        """Calculate root mean squared error for predictions on test data."""
-        return rmse(test_data, self.predicted)
+    convert a surprise data set to a matrix
+    return a dictionary of results
+    """
+    print(type(dataset))
+    print(dir(dataset))
     
-    def __str__(self):
-        return split_title(self.__class__.__name__)
+    users = [u for u in dataset.all_users()]
+    items = [i for i in dataset.all_items()]    
         
-# Implement the 3 baselines.
-class UniformRandomBaseline(Baseline):
-    """Fill missing values with uniform random values."""
+    R = np.zeros((dataset.n_users,dataset.n_items),)
 
-    def predict(self, train_data):
-        nan_mask = np.isnan(train_data)
-        masked_train = np.ma.masked_array(train_data, nan_mask)
-        pmin, pmax = masked_train.min(), masked_train.max()
-        N = nan_mask.sum()
-        train_data[nan_mask] = np.random.uniform(pmin, pmax, N)
-        self.predicted = train_data
+    for d in dataset.all_ratings():
+        R[users.index(d[0]),items.index(d[1])] = float(d[2])
+
+    return {"R":R,'users':users,'items':items}
 
 
-class GlobalMeanBaseline(Baseline):
-    """Fill in missing values using the global mean."""
+class GlobalMean(AlgoBase):
+    def train(self, trainset):
 
-    def predict(self, train_data):
-        nan_mask = np.isnan(train_data)
-        train_data[nan_mask] = train_data[~nan_mask].mean()
-        self.predicted = train_data
+        # Here again: call base method before doing anything.
+        AlgoBase.train(self, trainset)
+
+        # Compute the average rating
+        self.the_mean = np.mean([r for (_, _, r) in
+                                 self.trainset.all_ratings()])
+
+    def estimate(self, u, i):
+
+        return self.the_mean
 
 
-class MeanOfMeansBaseline(Baseline):
-    """Fill in missing values using mean of user/item/global means."""
+class MeanofMeans(AlgoBase):
+    def train(self, trainset):
 
-    def predict(self, train_data):
-        nan_mask = np.isnan(train_data)
-        masked_train = np.ma.masked_array(train_data, nan_mask)
-        global_mean = masked_train.mean()
-        user_means = masked_train.mean(axis=1)
-        item_means = masked_train.mean(axis=0)
-        self.predicted = train_data.copy()
-        n, m = train_data.shape
-        for i in range(n):
-            for j in range(m):
-                if np.ma.isMA(item_means[j]):
-                    self.predicted[i,j] = np.mean(
-                        (global_mean, user_means[i]))
-                else:
-                    self.predicted[i,j] = np.mean(
-                        (global_mean, user_means[i], item_means[j]))
+        # Here again: call base method before doing anything.
+        AlgoBase.train(self, trainset)
+
+        users = np.array([u for (u, _, _) in self.trainset.all_ratings()])
+        items = np.array([i for (_, i, _) in self.trainset.all_ratings()])
+        ratings = np.array([r for (_, _, r) in self.trainset.all_ratings()])
+
+        user_means,item_means = {},{}
+        for user in np.unique(users):
+            user_means[user] = ratings[users==user].mean()
+        for item in np.unique(items):
+            item_means[item] = ratings[items==item].mean()
+
+        self.global_mean = ratings.mean()    
+        self.user_means = user_means
+        self.item_means = item_means
+                            
+    def estimate(self, u, i):
+        """
+        return the mean of means estimate
+        """
+        
+        if u not in self.user_means:
+            return(np.mean([self.global_mean,
+                            self.item_means[i]]))
+
+        if i not in self.item_means:
+            return(np.mean([self.global_mean,
+                            self.user_means[u]]))
+
+        return(np.mean([self.global_mean,
+                        self.user_means[u],
+                        self.item_means[i]]))
 
 
 if __name__ == "__main__":
 
-    baseline_methods = OrderedDict()
-    baseline_methods['ur'] = UniformRandomBaseline
-    baseline_methods['gm'] = GlobalMeanBaseline
-    baseline_methods['mom'] = MeanOfMeansBaseline
+    data = Dataset.load_builtin('ml-100k')
+    print("\nGlobal Mean...")
+    algo = GlobalMean()
+    evaluate(algo, data)
 
-    ## generate a utility matrix
-    R = np.random.randint(-10,10,1000).astype('float')
-    R[np.random.randint(0,1000,50)] = np.nan
+    print("\nMeanOfMeans...")
+    algo = MeanofMeans()
+    evaluate(algo, data)
 
-    ## handle unrated items
-    unrated = np.isnan(R)
-    R[unrated] = 0
-
-    ## create a train-test split
-    test = R
-    train = R.copy()
-    train[np.random.randint(0,1000,int(np.round(0.2*R.size)))] = np.nan
     
-    train = train.reshape(100,10)
-    test = test.reshape(100,10)
-    
-    baselines = {}
-    for name in baseline_methods:
-        Method = baseline_methods[name]
-        method = Method(train)
-        baselines[name] = method.rmse(test)
-        print('%s RMSE:\t%.5f' % (method, baselines[name]))
