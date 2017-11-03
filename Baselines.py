@@ -8,25 +8,6 @@ import sys
 import numpy as np
 from surprise import AlgoBase, Dataset, evaluate
 
-def create_matrix(dataset):
-    """
-    convert a surprise data set to a matrix
-    return a dictionary of results
-    """
-    print(type(dataset))
-    print(dir(dataset))
-    
-    users = [u for u in dataset.all_users()]
-    items = [i for i in dataset.all_items()]    
-        
-    R = np.zeros((dataset.n_users,dataset.n_items),)
-
-    for d in dataset.all_ratings():
-        R[users.index(d[0]),items.index(d[1])] = float(d[2])
-
-    return {"R":R,'users':users,'items':items}
-
-
 class GlobalMean(AlgoBase):
     def train(self, trainset):
 
@@ -34,8 +15,7 @@ class GlobalMean(AlgoBase):
         AlgoBase.train(self, trainset)
 
         # Compute the average rating
-        self.the_mean = np.mean([r for (_, _, r) in
-                                 self.trainset.all_ratings()])
+        self.the_mean = np.mean([r for (_, _, r) in self.trainset.all_ratings()])
 
     def estimate(self, u, i):
 
