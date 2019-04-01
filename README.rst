@@ -4,7 +4,7 @@ Alternative Recommender Case Study
 
 
 :Authors: DSI TEAM
-:Web site: https://github.com/gSchool/alt-recommender-case-study
+:Web site: https://github.com/gSchool/dsd-recommender-case-study
 :Copyright: Galvanize
 
 About
