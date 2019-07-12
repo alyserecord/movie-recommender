@@ -50,18 +50,18 @@ The reduced dataset consists of 100,000 user reviews from 671 user on over 9,000
 
 Within the data, there is a non-normal distribution of of ratings of movies, with the majority of ratings falling between 3 - 4 on a scale of 1 - 5 (worst - best). Additionally, we observe that increment of 0.5 within ratings to provide a discrete distribution.
 
-<img src="images/mean_rating_movie.png" width= "800" /> 
+<img src="images/mean_rating_movie.png" width= "600" /> 
 
 Suprisingly, very few movies receive a large number of very-low or very-high ratings
 
 Most users provided fewer than 50 movie ratings which contributes to why the matrix is so spare. As seen in the below distribution plot, there is a concentration of users who rated 200 or few movies with a much smaller population of users that that rated 200+ movies.
 
-<img src="images/user_rating_count2.png" width= "800" /> 
+<img src="images/user_rating_count2.png" width= "600" /> 
 
 
 When looking at the average rating given by user, the distribution is fairly normal, skewing slightly to the right meaning users are more likely to provide favorable ratings on average.
 
-<img src="images/user_rating_avg.png" width= "800" /> 
+<img src="images/user_rating_avg.png" width= "600" /> 
 
 
 Approach
@@ -74,7 +74,7 @@ Given the nature of the dataset, two different approaches could be used for a re
 
 Alternatively, a collaboratie filtering recommendation system could be used with only the numerical rating data from users for movies. This approach allows for user-user, item-item, and user-item comparisons. The low density of this data, however, restricts the available approaches as sparse data restricts the ability to perform a neighborhood-based collaborative filtering. Further, the sheer volume of data in the full data set makes this approach extremely resource intensive as distances between all movies must be held in memory along with user-user distances.
 
-<img src="images/collaborative_filtering.png" width= "450" /> 
+<img src="images/collaborative_filtering.png" /> 
 
 Instead, a non-negative matrix factorization approach allows for the determination of user-embedded and movie-embedded latent factors from the matrix of the user-movie ratings into the matrices U and V. While the factorization approach itself is time-consuming, the results of this matrix factorization allow for the direct prediction of movie ratings for any user. Construction of this user-movie matrix on a sample of the data itself is a time-consuming process, and results in a (671 X 9,066) matrix with 1.64% density. Given the abundance of missing values, typical matrix factorization approaches cannot be used. Instead, a specialized matrix factorization approach known as "Fund SVD" is employed.
 
