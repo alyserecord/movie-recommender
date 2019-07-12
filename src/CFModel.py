@@ -22,10 +22,10 @@ class CFModel(Sequential):
         Q.add(Embedding(m_items, k_factors, input_length=1))
         Q.add(Reshape((k_factors,)))
 
-        super(CFModel, self).__init__(**kwargs)
+#         super(CFModel, self).__init__(**kwargs)
         
         # The Merge layer takes the dot product of user and movie latent factor vectors to return the corresponding rating.
-        self.add(Dot([P, Q], axes=1))
+        self.add(Dot([P, Q], axes= 1))
 
     # The rate function to predict user's rating of unrated items
     def rate(self, user_id, item_id):
