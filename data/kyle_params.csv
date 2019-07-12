@@ -1,0 +1,5 @@
+20,userId,movieId,rating,15,True,drop
+5,userId,movieId,rating,100,True,drop
+5,userId,movieId,rating,15,True,drop
+5,userId,movieId,rating,100,True,drop
+15,userId,movieId,rating,50,True,drop
