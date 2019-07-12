@@ -50,13 +50,13 @@ The reduced dataset consists of 100,000 user reviews from 671 user on over 9,000
 
 Within the data, there is a non-normal distribution of of ratings of movies, with the majority of ratings falling between 3 - 4 on a scale of 1 - 5 (worst - best). Additionally, we observe that increment of 0.5 within ratings to provide a discrete distribution.
 
-<img src="images/mean_rating_movie.png" width= "800" height= "300" /> 
+<img src="images/mean_rating_movie.png" width= "800" /> 
 
 Suprisingly, very few movies receive a large number of very-low or very-high ratings
 
 
 
-<img src="images/user_rating_count2.png" width= "800" height= "300" /> 
+<img src="images/user_rating_count2.png" width= "800" /> 
 
 
 Approach
