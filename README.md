@@ -96,9 +96,7 @@ Manually performing a random gridsearched narrowed us down to a rank of 2 and le
 
 <img src="images/full.gif" width= "600" />  
 
-After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 16 and a learning rate of 0.15. 
-
-Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 
+After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 16 and a learning rate of 0.15.
 
 
 
