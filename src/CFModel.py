@@ -9,7 +9,7 @@ from keras.models import Sequential
 class CFModel(Sequential):
 
     # The constructor for the class
-    def __init__(self, n_users, m_items, k_factors, **kwargs):
+    def __init__(self, n_users, m_items, k_factors):
         # P is the embedding layer that creates an User by latent factors matrix.
         # If the intput is a user_id, P returns the latent factor vector for that user.
         P = Sequential()
@@ -21,11 +21,9 @@ class CFModel(Sequential):
         Q = Sequential()
         Q.add(Embedding(m_items, k_factors, input_length=1))
         Q.add(Reshape((k_factors,)))
-
-#         super(CFModel, self).__init__(**kwargs)
         
         # The Merge layer takes the dot product of user and movie latent factor vectors to return the corresponding rating.
-        self.add(Dot([P, Q], axes= 1))
+        self.add(Dot([P, Q], axes=1, normalize= False))
 
     # The rate function to predict user's rating of unrated items
     def rate(self, user_id, item_id):
