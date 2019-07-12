@@ -3,7 +3,7 @@
 # Keras uses TensorFlow tensor library as the backend system to do the heavy compiling
 
 import numpy as np
-from keras.layers import Embedding, Reshape, Merge
+from keras.layers import Embedding, Reshape, Dot
 from keras.models import Sequential
 
 class CFModel(Sequential):
@@ -25,8 +25,10 @@ class CFModel(Sequential):
         super(CFModel, self).__init__(**kwargs)
         
         # The Merge layer takes the dot product of user and movie latent factor vectors to return the corresponding rating.
-        self.add(Merge([P, Q], mode='dot', dot_axes=1))
+        self.add(Dot([P, Q], axes=1))
 
     # The rate function to predict user's rating of unrated items
     def rate(self, user_id, item_id):
         return self.predict([np.array([user_id]), np.array([item_id])])[0][0]
+
+#     dot([target, context], axes=1, normalize=False)
