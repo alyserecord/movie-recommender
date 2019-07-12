@@ -100,5 +100,5 @@ Manually performing a random gridsearched narrowed us down to a rank of 2 and le
 
 Conclusion
 --------------
-Using a Spark ALS collaborative filtering recommendation system, the RMSE was improved by 17.8% over the existing model. And since this model is built in Spark, it can be scaled to a much larger dataset for production use.
+Using a Spark ALS collaborative filtering recommendation system, with a RMSE of .8366, our existing recommender was beat by a wopping 17.8%!. And since this model is built in Spark, it can be scaled to a much larger dataset for production use.
 
