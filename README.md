@@ -88,3 +88,4 @@ min( U(i) or V(j) + ⍺ 2(true - predicted) x V(j) or U(i)) , where ⍺ is the l
 
 In order to determine appropriate hyper-parameters, an initial random Grid Search was performed on approximately 10% of the possible hyper-parameters on the Funk SVD model on training data. A smaller Grid Search was performed using a narrow range of hyper-parameter values. 
 
+<img src="images/full.gif" width= "450" height= "300" /> 
