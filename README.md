@@ -88,11 +88,20 @@ min( U(i) or V(j) + ⍺ 2(true - predicted) x V(j) or U(i)) , where ⍺ is the l
 
 For this implementation we chose the the Spark ALS collaborative filtering recommendation system, so that after the model was trained on a subset of the data, it could be run on a much larger scale with more data. 
 
-In order to determine appropriate hyper-parameters of the Spark ALS model, an initial random Grid Search was performed on approximately 10% of the possible hyper-parameters on the Funk SVD model on training data. A smaller Grid Search was performed using a narrow range of hyper-parameter values. After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 15 and a learning rate of 0.15. 
+In order to determine appropriate hyper-parameters of the Spark ALS model, an initial random Grid Search was performed on approximately 10% of the possible hyper-parameters on the Funk SVD model on training data. A smaller Grid Search was performed using a narrow range of hyper-parameter values. 
 
-<img src="images/rankvsrmse.png" width= "600" /> 
+Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 0.15. However, when we ran a full grid search of rank 1-20, there was a smaller global minima of 16, albiet more local and thus harder to find by hand.  
 
-<img src="images/full.gif" width= "600" /> 
+<img src="images/rankvsrmse.png" width= "600" />  
+
+<img src="images/full.gif" width= "600" />  
+
+After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 16 and a learning rate of 0.15. 
+
+Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 
+
+
+
 
 Conclusion
 --------------
