@@ -59,7 +59,7 @@ Most users provided fewer than 50 movie ratings which contributes to why the mat
 <img src="images/user_rating_count2.png" width= "800" /> 
 
 
-When looking at the average rating given by user, the distribution is fairly normal, skewing slightly to the right. 
+When looking at the average rating given by user, the distribution is fairly normal, skewing slightly to the right meaning users are more likely to provide favorable ratings on average.
 
 <img src="images/user_rating_avg.png" width= "800" /> 
 
