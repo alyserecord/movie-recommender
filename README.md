@@ -92,11 +92,9 @@ In order to determine appropriate hyper-parameters of the Spark ALS model, an in
 
 Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 0.15. However, when we ran a full grid search of rank 1-20, there was a smaller global minima of 16, albiet more local and thus harder to find by hand.  
 
-<img src="images/rankvsrmse.png" width= "600" />  
-
 <img src="images/full.gif" width= "600" />  
 
-After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 16 and a learning rate of 0.15.
+After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 2 and a learning rate of 0.15.
 
 
 
