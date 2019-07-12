@@ -74,11 +74,11 @@ Given the nature of the dataset, two different approaches could be used for a re
 
 Alternatively, a collaboratie filtering recommendation system could be used with only the numerical rating data from users for movies. This approach allows for user-user, item-item, and user-item comparisons. The low density of this data, however, restricts the available approaches as sparse data restricts the ability to perform a neighborhood-based collaborative filtering. Further, the sheer volume of data in the full data set makes this approach extremely resource intensive as distances between all movies must be held in memory along with user-user distances.
 
-<img src="images/collaborative_filtering.png" /> 
+<img src="images/collaborative_filtering.png" width= "300" height= "300"/> 
 
 Instead, a non-negative matrix factorization approach allows for the determination of user-embedded and movie-embedded latent factors from the matrix of the user-movie ratings into the matrices U and V. While the factorization approach itself is time-consuming, the results of this matrix factorization allow for the direct prediction of movie ratings for any user. Construction of this user-movie matrix on a sample of the data itself is a time-consuming process, and results in a (671 X 9,066) matrix with 1.64% density. Given the abundance of missing values, typical matrix factorization approaches cannot be used. Instead, a specialized matrix factorization approach known as "Fund SVD" is employed.
 
-<img src="images/matrix.png" width= "800" /> 
+<img src="images/matrix.png" width= "400" /> 
 
 Funk SVD allows for factorization of incredibly spare matrices because it ignores missing values and only uses present values to compute latent factors. In this approach, values are predicted individually for each user and for each film and compared to a true user rating. For each user, all rated films are used and for each film all ratings are used. A dot-product of these two vectors is used to create a predicted user rating for a film with a true user-rating. This predicted rating is compared to the true user-rating in a cost function, and a gradient descent approach is used to minimize the prediction error. 
 
