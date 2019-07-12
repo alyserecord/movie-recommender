@@ -54,9 +54,10 @@ Within the data, there is a non-normal distribution of of ratings of movies, wit
 
 Suprisingly, very few movies receive a large number of very-low or very-high ratings
 
-
+Most users have provided fewer than 50 movie ratings which contributes to why the matrix is so spare. As seen in the below distribution plot, there is a concentration of users who rated 200 or few movies with only a handful of users that that rated 200+ movies.
 
 <img src="images/user_rating_count2.png" width= "800" /> 
+
 
 
 Approach
