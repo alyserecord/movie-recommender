@@ -19,12 +19,6 @@ class SparkALS():
         self.predictions = self.recommender.transform(test_df)
 
     def evaluate(self):
-#         in pandas:
-#         train_pandas = self.train_df.toPandas()
-#         predictions_df = self.predictions.toPandas().fillna(train_pandas['rating'].mean())
-#         predictions_df['squared_error'] = (predictions_df['rating'] - predictions_df['prediction'])**2
-#         return np.sqrt(sum(predictions_df['squared_error']) / len(predictions_df))
-
 
         mean_rating = train_df.select([mean('rating')]).collect()
         mean_rating
@@ -37,11 +31,8 @@ class SparkALS():
         return evaluator.evaluate(new_predictions)
 
 if __name__ == '__main__':
-    train_pandas_df = pd.read_csv('data/movies/ratings_train.csv',index_col=0)
-    train_df = spark.createDataFrame(train_pandas_df)
-
-    test_pandas_df = pd.read_csv('data/movies/ratings_test.csv',index_col=0)
-    test_df = spark.createDataFrame(test_pandas_df)
+    train_df = spark.read.format("csv").option("header", "true").option('inferSchema','true').load("data/movies/ratings_train.csv")
+    test_df = spark.read.format("csv").option("header", "true").option('inferSchema','true').load("data/movies/ratings_test.csv")
 
     gridlist = []
 
