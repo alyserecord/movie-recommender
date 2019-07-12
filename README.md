@@ -90,16 +90,15 @@ For this implementation we chose the the Spark ALS collaborative filtering recom
 
 In order to determine appropriate hyper-parameters of the Spark ALS model, an initial random Grid Search was performed on approximately 10% of the possible hyper-parameters on the Funk SVD model on training data. A smaller Grid Search was performed using a narrow range of hyper-parameter values. 
 
-Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 0.15. However, when we ran a full grid search of rank 1-20, there was a smaller global minima of 16, albiet more local and thus harder to find by hand.  
+Manually performing a random gridsearched narrowed us down to a rank of 2 and learning rate of 0.15. However, when we ran a full grid search of rank 1-20, there was a smaller optimal hyper- parameter global minima of 16, albiet more local and thus harder to find by hand.  
 
-<img src="images/full.gif" width= "600" />  
-
-After performing the grid search we found that the most optimal hyper-parameters were a rank (number of latent features) of 2 and a learning rate of 0.15.
+<img src="images/rankvsrmse.png" width= "600" />  
+<img src="images/full.gif" width= "600" />
 
 
 
 
 Conclusion
 --------------
-Using a Spark ALS collaborative filtering recommendation system, the RMSE was improved by 10.2% over the existing model. And since this model is built in Spark, it can be scaled to a much larger dataset for production use.
+Using a Spark ALS collaborative filtering recommendation system, the RMSE was improved by 17.5% over the existing model. And since this model is built in Spark, it can be scaled to a much larger dataset for production use.
 
